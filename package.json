@@ -4,7 +4,6 @@
   "description": "A web app to create a separate DA Form 2062 from a list of names and serial numbers",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Abdullah Albyati",
   "license": "ISC",
