@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.25.0/sweetalert2.css">
+
+    <title><%=title%></title>
+  </head>
+  <body>
+
+    <div class="container">
+      <br>
+      <strong>
+        <h3 class="text-center">
+          Automatic DA Form 2062 Generator 
+        </h3>
+      </strong>
+      <br>
+    <div class="card card-body">
+      <form action="" method="post" id="form">
+        <label for="from">From</label>
+        <input type="text" name="from" id="from" class="form-control" placeholder="Enter From">
+        <br>
+        <div id="repeat">
+          <span id="non" style="display: none;">1</span>
+          <label for="snumber1">Stock Number #1</label>
+          <input type="number" name="snumber[]"  class="form-control" placeholder="Enter stock number" required="true">
+          <br>
+          <label for="idescription">Item Description #1</label>
+          <input type="text" name="idescription[]" class="form-control" placeholder="Enter item Description" required="true">
+          <br>
+          <label for="quantity">Enter Quantity #1</label>
+          <input type="number" name="quantity[]" class="form-control" placeholder="Enter Quantity" required="true">
+        </div>        
+        <br>
+        <button id="more" class="btn btn-info btn-sm col-md-3"><i class="fas fa-plus"></i> Add More</button>
+        <br>
+      <br>
+
+
+
+
+          <div class="row">
+            <div class="col-md-6">
+                <label for="namep">Enter names</label>
+                <textarea name="namep" id="namep" class="form-control" rows="5" cols="5" placeholder="Enter names" required></textarea>
+            </div>
+            <div class="col-md-6">
+               <label for="number">Enter Serial Numbers</label>
+                <textarea name="number" id="number" class="form-control" rows="5" placeholder="Enter Serial Numbers" cols="5" required></textarea>
+            </div>
+          </div>
+          <br>
+          <button type="submit" id="submit" class="btn btn-success btn-block btn-sm">Process Entered Data and Generate DA-Form 2062</button>
+        </div>
+
+      </form>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.25.0/sweetalert2.all.js"></script>
+    
+
+<script>
+  $(function(){
+
+    $("#form").on('submit',function(e){
+      e.preventDefault()
+      $("#submit").removeClass('btn-success')
+      $("#submit").addClass('btn-info disabled')
+      $("#submit").html(` <i class="fas fa-spinner fa-spin"></i> Processing your data , please wait ... `)
+      
+      $.ajax({
+        url : '/',
+        method : "POST",
+        data : $('#form').serialize(),
+        success : function(data){
+
+           $("#submit").removeClass('btn-info disabled')
+          $("#submit").addClass('btn-success')
+          $("#submit").html(` Process Entered Data and Generate DA-Form 2062  `)
+          swal({
+            type : data.type,
+            title : data.type.toUpperCase(),
+            html : data.msg
+          })
+
+          if(data.type== "success"){
+             $('#form')[0].reset()
+          }
+        }
+      })
+
+
+
+    })
+
+
+
+    //add more item fields
+
+
+    $('#more').on('click',function(e){
+      e.preventDefault()
+      var non = $('#non').html()
+      non = parseInt(non)
+      var nen = ++non
+      $('#non').html(non)
+      $("#repeat").append(`
+          <br />
+         <label for="snumber1">Stock Number #${nen}</label>
+          <input type="number" name="snumber[]"  class="form-control" placeholder="Enter stock number" required="true"> 
+          <br>
+          <label for="idescription">Item Description #${nen}</label>
+          <input type="text" name="idescription[]" class="form-control" placeholder="Enter item Description" required="true">
+          <br>
+          <label for="quantity">Enter Quantity #${nen}</label>
+          <input type="number" name="quantity[]" class="form-control" placeholder="Enter Quantity" required="true">
+
+        `)
+    })
+
+  })
+</script>
+
+  </body>
+</html>
