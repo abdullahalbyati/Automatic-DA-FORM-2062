@@ -1,7 +1,7 @@
 const express = require('express')
 const bparser = require('body-parser')
 const app = express()
-const port = process.env.PORT || 8080
+const port = process.env.PORT || 3000
 app.set('view engine','ejs')
 app.use(express.static('public'))
 app.use(bparser.urlencoded({extended : true}))
@@ -47,13 +47,14 @@ app.post('/',(req,res)=>{
 			}
 		})
 			var filname = new Date().getTime()+(Math.random()+1)*100000
-			var options = { 'width' : '35in', 'height' : '30in'};
+			var options = { 'width' : '13in', 'height' : '9in'};
 			pdf.create(hx, options).toFile(`./public/${filname}.pdf`, function(err, res) {
 			  if (err) return console.log(err);			 	
 			});
+        
 			res.send({
 		 		type : 'success',
-		 		msg : `Your forms has been created Click <a href="/${filname}.pdf" target = "_blank">here</a> to view the file and <a href="/${filname}.pdf" target="_blank" download> here </a> to download <br> please wait about 30 seconds before viewing or downloading the forms. If you recieve Cannot GET /1533687140332.1677.pdf Error click on the view forms again`
+		 		msg : ` WAIT about 30-60 seconds before viewing or downloading the forms. If you recieve Cannot GET Error click on the view forms again <br> <br> Your forms has been created Click <a href="/${filname}.pdf" target = "_blank">here</a> to view the file and <a href="/${filname}.pdf" target="_blank" download> here </a> to download`
 		 	})
 	
 	}
