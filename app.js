@@ -33,7 +33,7 @@ app.post('/',(req,res)=>{
 	if(nam.length!=num.length){
 		res.send({
 			type : 'error',
-			msg : "Number of names and serails number must match i.e if you enter 5 names you must enter 5 numbers"
+			msg : "Number of names and serail numbers must match i.e if you enter 5 names you must enter 5 numbers"
 		})
 	}
 	else{
@@ -53,7 +53,7 @@ app.post('/',(req,res)=>{
 			});
 			res.send({
 		 		type : 'success',
-		 		msg : `Your forms has been created !! Click <a href="/${filname}.pdf" target = "_blank">here</a> to view the file and <a href="/${filname}.pdf" target="_blank" download> here </a> to download`
+		 		msg : `Your forms has been created Click <a href="/${filname}.pdf" target = "_blank">here</a> to view the file and <a href="/${filname}.pdf" target="_blank" download> here </a> to download <br> please wait about 30 seconds before viewing or downloading the forms. If you recieve Cannot GET /1533687140332.1677.pdf Error click on the view forms again`
 		 	})
 	
 	}

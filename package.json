@@ -1,7 +1,7 @@
 {
   "name": "auto2062",
   "version": "1.0.0",
-  "description": "A web app to create a separate DA Form 2062 from a list of names and serial numbers",
+  "description": "web app to create a separate DA Form 2062 from a list of names and serial numbers",
   "main": "app.js",
       "repository": {
     "type": "git",

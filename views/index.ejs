@@ -4,6 +4,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="web app to create a separate DA Form 2062 from a list of names and serial numbers">
+    <meta name="author" content="Abdullah Albyati">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
@@ -42,9 +44,6 @@
         <button id="more" class="btn btn-info btn-sm col-md-3"><i class="fas fa-plus"></i> Add More</button>
         <br>
       <br>
-
-
-
 
           <div class="row">
             <div class="col-md-6">
@@ -87,7 +86,7 @@
 
            $("#submit").removeClass('btn-info disabled')
           $("#submit").addClass('btn-success')
-          $("#submit").html(` Process Entered Data and Generate DA-Form 2062  `)
+          $("#submit").html(` Process Data and Generate DA-Form 2062  `)
           swal({
             type : data.type,
             title : data.type.toUpperCase(),
